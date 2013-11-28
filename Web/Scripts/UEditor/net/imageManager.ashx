@@ -11,54 +11,57 @@ using System.Web;
 using System.IO;
 using System.Text.RegularExpressions;
 
-public class imageManager : IHttpHandler
+namespace UEditor
 {
-
-    public void ProcessRequest(HttpContext context)
+    public class imageManager : IHttpHandler
     {
-        context.Response.ContentType = "text/plain";
 
-        string[] paths = { "upload", "upload1" }; //需要遍历的目录列表，最好使用缩略图地址，否则当网速慢时可能会造成严重的延时
-        string[] filetype = { ".gif", ".png", ".jpg", ".jpeg", ".bmp" };                //文件允许格式
-
-        string action = context.Server.HtmlEncode(context.Request["action"]);
-
-        if (action == "get")
+        public void ProcessRequest(HttpContext context)
         {
-            String str = String.Empty;
-            
-            foreach (string path in paths)
-            {
-                DirectoryInfo info = new DirectoryInfo(context.Server.MapPath(path));
+            context.Response.ContentType = "text/plain";
 
-                //目录验证
-                if (info.Exists)
+            string[] paths = { "upload", "upload1" }; //需要遍历的目录列表，最好使用缩略图地址，否则当网速慢时可能会造成严重的延时
+            string[] filetype = { ".gif", ".png", ".jpg", ".jpeg", ".bmp" };                //文件允许格式
+
+            string action = context.Server.HtmlEncode(context.Request["action"]);
+
+            if (action == "get")
+            {
+                String str = String.Empty;
+
+                foreach (string path in paths)
                 {
-                    DirectoryInfo[] infoArr = info.GetDirectories();
-                    foreach (DirectoryInfo tmpInfo in infoArr)
+                    DirectoryInfo info = new DirectoryInfo(context.Server.MapPath(path));
+
+                    //目录验证
+                    if (info.Exists)
                     {
-                        foreach (FileInfo fi in tmpInfo.GetFiles())
+                        DirectoryInfo[] infoArr = info.GetDirectories();
+                        foreach (DirectoryInfo tmpInfo in infoArr)
                         {
-                            if (Array.IndexOf(filetype, fi.Extension) != -1)
+                            foreach (FileInfo fi in tmpInfo.GetFiles())
                             {
-                                str += path+"/" + tmpInfo.Name + "/" + fi.Name + "ue_separate_ue";
+                                if (Array.IndexOf(filetype, fi.Extension) != -1)
+                                {
+                                    str += path + "/" + tmpInfo.Name + "/" + fi.Name + "ue_separate_ue";
+                                }
                             }
                         }
                     }
                 }
+
+                context.Response.Write(str);
             }
-           
-            context.Response.Write(str);
         }
-    }
 
 
-    public bool IsReusable
-    {
-        get
+        public bool IsReusable
         {
-            return false;
+            get
+            {
+                return false;
+            }
         }
-    }
 
+    }
 }
