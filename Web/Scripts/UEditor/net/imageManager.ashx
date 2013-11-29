@@ -1,4 +1,4 @@
-<%@ WebHandler Language="C#" Class="imageManager" %>
+<%@ WebHandler Language="C#" Class="UEditor.imageManager" %>
 /**
  * Created by visual studio2010
  * User: xuheng

@@ -1,4 +1,4 @@
-<%@ WebHandler  Language="C#"  Class="getContent" %>
+<%@ WebHandler  Language="C#"  Class="UEditor.getContent" %>
 /**
  * Created by visual studio 2010
  * User: xuheng

@@ -1,4 +1,4 @@
-<%@ WebHandler Language="C#" Class="getRemoteImage" %>
+<%@ WebHandler Language="C#" Class="UEditor.getRemoteImage" %>
 /**
  * Created by visual studio 2010
  * User: xuheng
