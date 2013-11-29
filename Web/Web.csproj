@@ -20,6 +20,10 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -265,7 +269,9 @@
     <Content Include="Scripts\UEditor\net\imageManager.ashx" />
     <Content Include="Scripts\UEditor\net\imageUp.ashx" />
     <Content Include="Scripts\UEditor\net\scrawlUp.ashx" />
-    <Content Include="Scripts\UEditor\net\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Upload\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

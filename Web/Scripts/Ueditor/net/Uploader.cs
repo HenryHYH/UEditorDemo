@@ -12,6 +12,8 @@ namespace UEditor
     /// </summary>
     public class Uploader
     {
+        public static readonly string FILE_UPLOAD_PATH = System.Configuration.ConfigurationManager.AppSettings["FileUploadPath"];
+
         string state = "SUCCESS";
 
         string URL = null;
@@ -60,7 +62,7 @@ namespace UEditor
                     URL = pathbase + filename;
                 }
             }
-            catch (Exception e)
+            catch
             {
                 state = "未知错误";
                 URL = "";
@@ -93,7 +95,7 @@ namespace UEditor
 
                 URL = pathbase + filename;
             }
-            catch (Exception e)
+            catch
             {
                 state = "未知错误";
                 URL = "";

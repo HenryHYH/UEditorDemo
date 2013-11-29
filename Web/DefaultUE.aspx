@@ -27,13 +27,17 @@
     <script type="text/javascript" src="/Scripts/UEditor/ueditor.config.js"></script>
     <script type="text/javascript" src="/Scripts/UEditor/ueditor.all.min.js"></script>
     <script type="text/javascript">
+
         var editor;
         $(function () {
             editor = UE.getEditor('txtEditor', {
+                imagePath: '<%= UEditor.Uploader.FILE_UPLOAD_PATH %>',
+                filePath: "",
                 focus: true,
                 lang: "en",
                 autoHeightEnabled: false
             });
+            //alert(window.UEDITOR_CONFIG.imagePath);
             editor.addListener("contentChange", function () {
                 Post();
             });

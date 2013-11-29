@@ -1,5 +1,4 @@
-<%@ WebHandler Language="C#" Class="fileUp" %>
-<%@ Assembly Src="Uploader.cs" %>
+<%@ WebHandler Language="C#" Class="UEditor.fileUp" %>
 /**
  * Created by visual studio 2010
  * User: xuheng
@@ -29,7 +28,7 @@ namespace UEditor
 
             //上传文件
             Hashtable info = new Hashtable();
-            Uploader up = new Uploader();
+            UEditor.Uploader up = new UEditor.Uploader();
             info = up.upFile(context, pathbase, filetype, size); //获取上传状态
 
             context.Response.Write("{'state':'" + info["state"] + "','url':'" + info["url"] + "','fileType':'" + info["currentType"] + "','original':'" + info["originalName"] + "'}"); //向浏览器返回数据json数据

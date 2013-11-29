@@ -1,5 +1,4 @@
-<%@ WebHandler Language="C#" Class="imageUp" %>
-<%@ Assembly Src="Uploader.cs" %>
+<%@ WebHandler Language="C#" Class="UEditor.imageUp" %>
 
 using System;
 using System.Web;
@@ -21,7 +20,7 @@ namespace UEditor
 
             //上传图片
             Hashtable info = new Hashtable();
-            Uploader up = new Uploader();
+            UEditor.Uploader up = new UEditor.Uploader();
 
             string pathbase = null;
             int path = Convert.ToInt32(up.getOtherInfo(context, "dir"));
@@ -34,14 +33,14 @@ namespace UEditor
             {
                 pathbase = "upload1/";
             }
-
+            pathbase = UEditor.Uploader.FILE_UPLOAD_PATH + pathbase; //文件路径修正
             info = up.upFile(context, pathbase, filetype, size);                   //获取上传状态
 
             string title = up.getOtherInfo(context, "pictitle");                   //获取图片描述
             string oriName = up.getOtherInfo(context, "fileName");                //获取原始文件名
 
 
-            HttpContext.Current.Response.Write("{'url':'" + info["url"] + "','title':'" + title + "','original':'" + oriName + "','state':'" + info["state"] + "'}");  //向浏览器返回数据json数据
+            HttpContext.Current.Response.Write("{'url':'" + info["url"].ToString().Replace(UEditor.Uploader.FILE_UPLOAD_PATH, string.Empty) + "','title':'" + title + "','original':'" + oriName + "','state':'" + info["state"] + "'}");  //向浏览器返回数据json数据
         }
 
         public bool IsReusable
